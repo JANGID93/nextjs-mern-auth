@@ -32,7 +32,7 @@ const Register = () => {
             if (!res.ok) throw new Error(data.error || "Registration failed");
 
             setSuccess("Registration successful! Redirecting...");
-            setTimeout(() => router.push("/login"), 2000); // Redirect after success
+            setTimeout(() => router.push("/"), 2000);
         } catch (err: any) {
             setError(err.message);
         }

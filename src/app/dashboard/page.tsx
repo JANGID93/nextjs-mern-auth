@@ -12,17 +12,16 @@ const Dashboard = () => {
     const [totalPages, setTotalPages] = useState<number>(1);
     const router = useRouter();
 
-    const PRODUCTS_PER_PAGE = 10; // Set limit for pagination
+    const PRODUCTS_PER_PAGE = 10;
 
     useEffect(() => {
         const storedToken = localStorage.getItem("token");
         if (!storedToken) {
-            router.push("/login");
+            router.push("/");
             return;
         }
         setToken(storedToken);
 
-        // Fetch total records
         const fetchTotalRecords = async () => {
             try {
                 const response = await fetch("/api/products");
@@ -66,7 +65,7 @@ const Dashboard = () => {
 
     const handleLogout = () => {
         localStorage.removeItem("token");
-        router.push("/login");
+        router.push("/");
     };
 
     return (
@@ -102,7 +101,6 @@ const Dashboard = () => {
                         </tbody>
                     </table>
 
-                    {/* Pagination Controls */}
                     <div className="d-flex justify-content-center align-items-center gap-2 mt-3">
                         <button
                             className="btn btn-primary"

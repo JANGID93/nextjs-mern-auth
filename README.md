@@ -1,19 +1,26 @@
 ## Getting Started
 
-First, Install The all Dependancy
+### Install Dependencies 
+Run the following command to install all required dependencies:  
 ```bash
 npm install
 ```
 
-Cretae `.env` file on root and code here
+### Set Up Environment Variables 
+Create a '.env' file in the root directory and add the following:
 ```bash
 JWT_SECRET=your_super_secret_key
 ```
 
-run the development server:
-
+### Start the Development Server
+Run the project in development mode:
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Once the server is running, open your browser and visit:
+http://localhost:3000
+
+### Data Storage
+User data is stored in 'users.json'.
+Product data is stored in 'products.json'.
