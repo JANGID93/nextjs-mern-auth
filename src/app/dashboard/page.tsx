@@ -17,28 +17,10 @@ const Dashboard = () => {
     useEffect(() => {
         const storedToken = localStorage.getItem("token");
         if (!storedToken) {
-            router.push("/");
+            router.push("/login");
             return;
         }
         setToken(storedToken);
-
-        const fetchTotalRecords = async () => {
-            try {
-                const response = await fetch("/api/products");
-
-                if (!response.ok) {
-                    throw new Error("Failed to fetch total records");
-                }
-
-                const allProducts = await response.json();
-                const totalRecords = allProducts.length;
-                setTotalPages(Math.ceil(totalRecords / PRODUCTS_PER_PAGE));
-            } catch (error) {
-                setError("Error fetching total records");
-            }
-        };
-
-        fetchTotalRecords();
     }, []);
 
     useEffect(() => {
@@ -52,7 +34,8 @@ const Dashboard = () => {
                 }
 
                 const data = await response.json();
-                setProducts(data);
+                setProducts(data.products);
+                setTotalPages(Math.ceil(data.totalProducts / PRODUCTS_PER_PAGE));
             } catch (error) {
                 setError("Error fetching products");
             } finally {
@@ -65,7 +48,7 @@ const Dashboard = () => {
 
     const handleLogout = () => {
         localStorage.removeItem("token");
-        router.push("/");
+        router.push("/login");
     };
 
     return (
@@ -101,6 +84,7 @@ const Dashboard = () => {
                         </tbody>
                     </table>
 
+                    {/* Pagination Controls */}
                     <div className="d-flex justify-content-center align-items-center gap-2 mt-3">
                         <button
                             className="btn btn-primary"
