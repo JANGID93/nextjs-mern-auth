@@ -17,7 +17,7 @@ const Dashboard = () => {
     useEffect(() => {
         const storedToken = localStorage.getItem("token");
         if (!storedToken) {
-            router.push("/login");
+            router.push("/");
             return;
         }
         setToken(storedToken);
@@ -48,7 +48,7 @@ const Dashboard = () => {
 
     const handleLogout = () => {
         localStorage.removeItem("token");
-        router.push("/login");
+        router.push("/");
     };
 
     return (
